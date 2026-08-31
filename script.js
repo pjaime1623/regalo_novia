@@ -7,8 +7,11 @@ const anniversaryDate = new Date(2025, 5, 13, 17, 52, 10);
 function openGift() {
   // 1. Iniciar la música de fondo
   const music = document.getElementById('bg-music');
-  music.play().catch(e => console.log("Auto-play prevenido:", e));
-
+  if (music){
+  music.play().catch(error =>{
+    console.log("el navegador bloqueo el audio:", error);
+  });
+  }
   // 2. Disparar efecto de confeti
   if (typeof confetti === 'function') {
     confetti({
