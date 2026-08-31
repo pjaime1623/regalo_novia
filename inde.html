@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nuestra Historia</title>
+
+  <!-- Fuentes elegantes de Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Música de fondo (asegúrate de incluir un archivo musica.mp3) -->
+  <audio id="bg-music" loop>
+    <source src="JESSE & JOY, Luis Fonsi  Tanto (Video Oficial).mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- PANTALLA DE APERTURA (SOBRE) -->
+  <div id="envelope-screen" class="envelope-wrapper">
+    <div class="envelope-card">
+      <p class="sub-title">UN REGALO PARA TI</p>
+      <!-- Cambia el nombre por el de tu novia -->
+      <h1 class="recipient-name">Maria Jose</h1> 
+      
+      <div class="envelope-icon" id="open-btn">
+        <div class="heart-seal">❤️</div>
+      </div>
+      
+      <button class="btn-open" onclick="openGift()">Toca para abrir</button>
+    </div>
+  </div>
+
+  <!-- CONTENIDO PRINCIPAL (Oculto al inicio) -->
+  <main id="main-content" class="hidden">
+    
+    <!-- Encabezado y Foto Principal -->
+    <section class="hero-section">
+      <h1 class="couple-title">Tú & Yo</h1>
+      <div class="photo-frame">
+        <img src="https://ik.imagekit.io/qevpkmmlv/Fotos%20pmejjrap/IMG-20250518-WA0112.jpg?updatedAt=1749786026122" alt="Nosotros">
+      </div>
+      
+      <!-- Contador de Tiempo -->
+      <div class="counter-card">
+        <p class="counter-label">✦ Juntos desde hace ✦</p>
+        <div id="counter" class="timer-display">Cargando...</div>
+      </div>
+    </section>
+
+    <!-- Sección de Mensaje Privado -->
+    <section class="card-section">
+      <div class="letter-card">
+        <h3>Mensaje Privado</h3>
+        <p class="letter-text">
+          "Esta página guarda nuestros recuerdos para siempre. Prometo estar contigo en los días buenos y en los difíciles. Caminar a tu lado y sostener tu mano siempre que lo necesites."
+        </p>
+        <span class="signature">Con todo mi amor ❤️</span>
+      </div>
+    </section>
+
+    <!-- Galería de Fotos Corta -->
+    <section class="photo-gallery">
+      <div class="photo-frame">
+        <img src="https://ik.imagekit.io/qevpkmmlv/Fotos%20pmejjrap/IMG-20250712-WA0139.jpg?updatedAt=1758431812650" alt="Recuerdo 2">
+      </div>
+      <section class="photo-gallery">
+      <div class="photo-frame">
+        <img src="https://ik.imagekit.io/qevpkmmlv/Fotos%20pmejjrap/IMG_20250810_143722_359.webp?updatedAt=1758431846416" alt="Recuerdo 2">
+      </div>
+    </section>
+    <section class="photo-gallery">
+      <div class="photo-frame">
+        <img src="https://ik.imagekit.io/qevpkmmlv/Fotos%20pmejjrap/IMG_20250907_110420_936.webp?updatedAt=1758431846435" alt="Recuerdo 2">
+      </div>
+    </section>
+    <section class="photo-gallery">
+      <div class="photo-frame">
+        <img src="https://ik.imagekit.io/qevpkmmlv/Fotos%20pmejjrap/IMG-20250824-WA0036.jpg?updatedAt=1758432697893" alt="Recuerdo 2">
+      </div>
+    </section>
+    <section class="photo-gallery">
+      <div class="photo-frame">
+        <img src="https://ik.imagekit.io/qevpkmmlv/Fotos%20pmejjrap/IMG-20251109-WA0031.jpg?updatedAt=1772342773887" alt="Recuerdo 2">
+      </div>
+    </section>
+        <section class="photo-gallery">
+      <div class="photo-frame">
+        <img src="https://ik.imagekit.io/qevpkmmlv/Fotos%20pmejjrap/IMG-20260628-WA0023(2).jpg" alt="Recuerdo 2">
+      </div>
+    </section>
+    </section>
+
+<!-- Sección de Mensaje Privado -->
+    <section class="card-section">
+      <div class="letter-card">
+        <h3>Lo que más amo de Ti</h3>
+        <p class="letter-text">
+          Tu sonrisa
+        </p>
+        <p class="letter-text">
+          El brillo de tus ojos
+        </p>
+        <p class="letter-text">
+          la forma en la que te ries
+        </p>
+        <p class="letter-text">
+          Tu dulce y melodiosa vos
+        </p>
+        <p class="letter-text">
+          Tu cuerpo
+        </p>
+        <p class="letter-text">
+          Tu manera de amar
+        </p>
+        <p class="letter-text">
+        El que siempre me apoyes en mis locuras
+        </p>
+        <span class="signature">Con todo mi amor ❤️</span>
+      </div>
+    </section>
+
+  <section class="photo-gallery">
+      <div class="photo-frame">
+        <img src="https://ik.imagekit.io/qevpkmmlv/Fotos%20pmejjrap/IMG-20250518-WA0068.jpg?updatedAt=1749786026231" alt="Recuerdo 2">
+      </div>
+    </section>
+
+    <!----Mapa -->
+    <section class="map-section">
+  <h2>Nuestros Lugares Especiales</h2>
+  <p class="map-subtitle">Haz clic en cada marcador para revivir el recuerdo</p>
+  <div id="map"></div>
+</section>
+
+<section class="photo-gallery">
+      <div class="photo-frame">
+        <img src="https://ik.imagekit.io/qevpkmmlv/Fotos%20pmejjrap/IMG-20260315-WA0018(1).jpg" alt="Recuerdo 2">
+      </div>
+    </section>
+
+    <!-- Vales de Amor Interactivos -->
+    <section class="coupons-section">
+      <h2>Nuestros Vales de Amor</h2>
+      <p class="coupons-subtitle">Canjéalo cuando quieras. Solo se puede usar una vez.</p>
+
+      <div class="coupons-list">
+        <div class="coupon-item">
+          <span>Vale por un beso</span>
+          <button class="btn-redeem" onclick="redeemCoupon(this)">Canjear</button>
+        </div>
+        <div class="coupon-item">
+          <span>Vale por una cena</span>
+          <button class="btn-redeem" onclick="redeemCoupon(this)">Canjear</button>
+        </div>
+        <div class="coupon-item">
+          <span>Vale por una película a tu elección</span>
+          <button class="btn-redeem" onclick="redeemCoupon(this)">Canjear</button>
+        </div>
+        <div class="coupon-item">
+          <span>Vale por un día entero juntos</span>
+          <button class="btn-redeem" onclick="redeemCoupon(this)">Canjear</button>
+        </div>
+        <div class="coupon-item">
+          <span>Vale por un viaje juntos</span>
+          <button class="btn-redeem" onclick="redeemCoupon(this)">Canjear</button>
+        </div>
+        <div class="coupon-item">
+          <span>Vale por un set de la body</span>
+          <button class="btn-redeem" onclick="redeemCoupon(this)">Canjear</button>
+        </div>
+        <div class="coupon-item">
+          <span>Vale por un helado</span>
+          <button class="btn-redeem" onclick="redeemCoupon(this)">Canjear</button>
+        </div>
+        <div class="coupon-item">
+          <span>Vale para decir si a todo</span>
+          <button class="btn-redeem" onclick="redeemCoupon(this)">Canjear</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="photo-gallery">
+      <div class="photo-frame">
+        <img src="https://ik.imagekit.io/qevpkmmlv/Fotos%20pmejjrap/IMG-20260628-WA0037(1).jpg" alt="Recuerdo 2">
+      </div>
+    </section>
+
+    <!-- Cierre -->
+    <footer class="final-footer">
+      <p>Por todo lo que somos y por todo lo que seremos.</p>
+      <h3>Te amo</h3>
+    </footer>
+
+  </main>
+
+  <!-- Librería ligera para el efecto de confeti al abrir el sobre -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
